@@ -1,0 +1,51 @@
+<!-- 肖睿 1652772 脚本语言程序设计 todoMVC-Mobile index.html -->
+<!DOCTYPE HTML>
+<html lang="en">
+
+    <head>
+        <title>todoMVC - Mobile</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <script src="todoMVC.js"></script>
+        <link rel="stylesheet" href="todoMVC.css" type="text/css" />
+    </head>
+
+    <body>
+        <div id="nav" class="nav">
+            <header class="nav-label">Todos</header>
+            <ul id="filters" class="nav-up">
+                <li><a id="filter-all-button" class="selected">All</a></li>
+                <li><a id="filter-active-button" class="">Active</a></li>
+                <li><a id="filter-completed-button" class="">Completed</a></li>
+            </ul>
+            <div class="divider"></div>
+            <div class="nav-down">
+                <label id="tobedone-count-label" class="item-count-label-num">0 </label>
+                <label class="item-count-label">items left to be done</label>
+                <img src="res/yes.png" id="all-button" class="all-button" alt="all-complete-button"/>
+            </div>
+        </div>
+
+        <div id="nav-bg-holder"></div>
+
+        <a id="clear-completed-button" class="clear-completed-button clear-completed-button-disabled">clear all completed</a>
+
+        <div id="card-container"></div>
+
+        <div id="write-layer" class="write-layer hidden">
+            <div class="write-container">
+                <textarea id="write-text-area" placeholder="What to do next?"></textarea>
+            </div>
+        </div>
+
+        <div id="write-button-wrapper" class="button-wrapper">
+            <div id="write-button-layer" class="button-layer"></div>
+            <div id="write-button">
+                <div id="ripple" class="ripple"></div>
+                <img id="write-button-img" src="res/write.png" class="write-button" alt="write-button"/>
+                <img id="ok-button-img" src="res/yes.png" class="write-button hidden" alt="write-ok-button"/>
+            </div>
+        </div>
+        
+    </body>
+</html>

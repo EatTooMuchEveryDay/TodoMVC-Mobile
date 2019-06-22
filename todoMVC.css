@@ -1,0 +1,344 @@
+/* 肖睿 1652772 脚本语言程序设计 todoMVC-Mobile todoMVC.css */
+
+@font-face {
+    font-family: 'MyriadPro';
+    src: url('res/MyriadPro-LightSemiExt.otf');
+}
+
+.hidden{
+    display: none!important;
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+}
+
+body{
+    text-align: center;
+    margin: 0;
+    font-family: MyriadPro;
+    background:#fbe9e7;
+}
+
+.nav{
+    margin: 0;
+    width: 100%;
+    position:fixed;
+    top:0;
+    left:0;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 28pt;
+    text-align: left;
+    border: 0;
+    outline: none;
+    color: inherit;
+    z-index: 2;
+    padding: 0;
+    padding-top: 10pt;
+    padding-bottom: 10pt;
+    padding-left: 20pt;
+    background: #ffab91;
+    transition: all 0.8s cubic-bezier(.25,.8,.25,1);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.08);
+}
+
+.nav-label{
+    display: inline;
+    color: white;
+    font-size: 26pt;
+    transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+}
+
+.nav-up{
+    display: inline;
+    padding-left: 10pt;
+    /* background:red; */
+    transition: all 0.6s cubic-bezier(.25,.8,.25,1);
+}
+
+.nav-up li{
+    display: inline;
+
+}
+
+.nav-up li a{
+    font-size: 12pt;
+    color:white;
+    padding: 0pt 5pt;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.nav-up li a.selected{
+    border-color: rgba(191,54,12, 0.4);
+    transition: all 0.6s cubic-bezier(.25,.8,.25,1);
+}
+
+.nav-down{
+    display: inline;
+    padding-left:10pt;
+    text-align: left;
+    transition: all 0.6s cubic-bezier(.25,.8,.25,1);
+}
+
+.item-count-label-num{
+    font-size: 22pt;
+    color:white;
+}
+.item-count-label{
+    font-size: 18pt;
+    color:white;
+}
+
+.fold .nav-up{
+    display: none;
+}
+.fold .nav-label{
+    font-size: 18pt;
+}
+.fold .item-count-label-num{
+    font-size: 13pt;
+    transition: all 0.6s cubic-bezier(.25,.8,.25,1);
+}
+.fold .item-count-label{
+    font-size: 11pt;
+    transition: all 0.6s cubic-bezier(.25,.8,.25,1);
+}
+.fold img{
+    width: 20pt;
+    height: 20pt;
+    margin-bottom: 5pt;
+    padding-left: 5pt;
+    transition: all 0.6s cubic-bezier(.25,.8,.25,1);
+}
+.fold .divider{
+    display: none;
+}
+
+.all-button{
+    vertical-align: bottom;
+    border: none;
+    width: 30pt;
+    height: 30pt;
+    padding-left: 10pt;
+}
+.all-button-disable{
+    opacity: 0.5;
+}
+
+#nav-bg-holder{
+    width: 100%;
+    height: 100pt;
+}
+
+.clear-completed-button{
+    border:none;
+    border-bottom: 2px solid #ff8a65;
+    font-size: 18pt;
+    color: #ff8a65;
+    padding-bottom: 3pt;
+}
+
+.clear-completed-button-disabled{
+    opacity: 0.3;
+}
+
+#card-container{
+    width: 100%;
+    padding-top:20pt;
+}
+
+.card {
+    background: #fff;
+    border-radius: 2pt;
+    display: inline-block;
+    margin: 1rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    width: 85%;
+
+    perspective: 1000pt;
+
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card-button-layer{
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-top-right-radius: 2pt;
+    border-bottom-right-radius: 2pt;
+    background: #ffab91;
+    width: 40pt;
+    height: 100%;
+}
+
+.card-yes{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -10pt;
+    margin-left: -10pt;
+    width: 20pt;
+    height: 20pt;
+}
+
+.card-text{
+    margin:16pt 8pt;
+    font-size: 20pt;
+    width: 75%;
+    overflow: hidden;
+    word-wrap: break-word;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+}
+
+.card-selected{
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-front{
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-selected .card-front{
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-back{
+    position: absolute;
+    margin-top: -15pt;
+    margin-right: -150pt;
+    top: 50%;
+    right: 50%;
+    width: 300pt;
+    height: 20pt;
+
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    transition: all .9s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-selected .card-back{
+    transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transition: all .9s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-back-button{
+    width: 30pt;
+    height: 30pt;
+    margin: 0 20pt;
+}
+
+.completed{
+    opacity: 0.4;
+}
+
+.button-wrapper{
+    position: fixed;
+    bottom: 50pt;
+    right: 80pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: 50% 50%;
+    z-index: 100;
+}
+
+.button-layer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50pt;
+    height: 50pt;
+    background:#ffab91;
+    border-radius: 50%;
+    z-index: 9;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.write-button{
+    position: absolute;
+    left: 10pt;
+    bottom: 10pt;
+    width: 30pt;
+    height: 30pt;
+    z-index: 999;
+}
+
+.ripple {
+    position: absolute;
+    left: 1pt;
+    bottom: 1pt;
+    width: 46pt;
+    height: 46pt;
+    border-radius: 50%;
+    z-index: 99;
+    background: transparent;
+    border: 1pt solid #ffab91;
+    -webkit-transition: .3s all ease;
+    transition: .3s all ease;
+    opacity: 1;
+}
+
+.rippling {
+    animation: .3s rippling 1;
+}
+
+@keyframes rippling {
+    25% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.button-wrapper.clicked .button-layer {
+    transform: scale(30);
+    transition: 1.5s cubic-bezier(.25,.8,.25,1);
+}
+
+.write-layer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: .5s bounceIn;
+    background: #ffab91;
+    z-index: 10;
+}
+
+.write-container{
+    padding: 60pt 50pt;
+}
+
+.write-container textarea
+{
+    background: transparent;
+    width: 100%;
+    height: 400pt;
+    font-size: 18pt;
+    font-family: inherit;
+    color:white;
+    outline:none;
+    border: none;
+}
