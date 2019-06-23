@@ -134,7 +134,6 @@
         let inputTextArea = document.getElementById("write-text-area");
         let text = inputTextArea.value;
 
-        // console.log(text.length);
         if(text.length <= 0){
             inputTextArea.placeholder = "Please tell me what needs to be done."
 
@@ -260,8 +259,6 @@
         let cards = getCardContainer().children;
 
         if(!allButton.classList.contains("all-button-disable")){
-            // allButton.classList.add("all-button-disable");
-
             for(let i=0;i<cards.length;i++){
                 if(!cards[i].classList.contains("completed")){
                     completeCard(cards[i]);
@@ -270,9 +267,6 @@
 
             updateStatus();
         }else{
-            // allButton.src = "res/yes.png";
-            // allButton.classList.remove("all-button-disable");
-
             for(let i=0;i<cards.length;i++){
                 completeCard(cards[i]);
             }

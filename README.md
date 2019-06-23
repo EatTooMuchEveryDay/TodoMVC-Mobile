@@ -52,6 +52,28 @@ The write new item button bubble would quickly become large and show the write l
 
 ![1561212368769](README.assets/1561212368769.png)
 
+```css
+.rippling {
+    animation: .3s rippling 1;
+}
+
+@keyframes rippling {
+    25% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.button-wrapper.clicked .button-layer {
+    transform: scale(30);
+    transition: 1.5s cubic-bezier(.25,.8,.25,1);
+}
+```
+
 #### Edit Side of Cards - Rotation
 
 Click the text content of the card and it would rotate to show the buttons.
@@ -62,6 +84,52 @@ Click the text content of the card and it would rotate to show the buttons.
 
 ![1561214267317](README.assets/1561214267317.png)
 
+```css
+.card-selected{
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-front{
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-selected .card-front{
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-back{
+    position: absolute;
+    margin-top: -15pt;
+    margin-right: -150pt;
+    top: 50%;
+    right: 50%;
+    width: 300pt;
+    height: 20pt;
+
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    transition: all .9s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-selected .card-back{
+    transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transition: all .9s cubic-bezier(.25,.8,.25,1);
+}
+```
+
 #### Slide Down to Fold Navigation Bar
 
 When sliding down, the navigation bar would be folded.
@@ -71,6 +139,31 @@ When sliding down, the navigation bar would be folded.
 And slide up to unfold it.
 
 ![1561214788411](README.assets/1561214788411.png)
+
+```js
+// begin touch event, to calculate the slide direction
+document.addEventListener("touchstart", function(e){
+    startx = e.touches[0].pageX;
+    starty = e.touches[0].pageY;
+}, false);
+
+// end touch event
+document.addEventListener("touchend", function(e) {
+    var endx, endy;
+    endx = e.changedTouches[0].pageX;
+    endy = e.changedTouches[0].pageY;
+    var direction = getDirection(startx, starty, endx, endy);
+    switch (direction) {
+        case 1:
+            foldNav();
+            break;
+        case 2:
+            unfoldNav();
+            break;
+        default:
+    }
+}, false);
+```
 
 ### Edit Single Item
 
